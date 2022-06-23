@@ -14,6 +14,29 @@ It is fundamental for the company to detect even smaller cracks to correct the p
 
 ![GIF](https://media.giphy.com/media/zQPoPn1iFrIcM/giphy.gif)
 
+
+
+<!-- TABLE OF CONTENTS -->
+
+<details  open="open">
+
+<summary>Table of Contents</summary>
+
+<ol>
+
+<li><a  href="#about-the-project">About The Project</a></li>
+
+<li><a  href="#getting-started">Getting Started</a></li>
+
+<li><a  href="#preprocess">Preprocess</a></li>
+
+<li><a  href="#model">Model</a></li>
+
+</ol>
+
+</details>
+
+
 ### Must-have features
 
 - Detection of cracks on images of concrete.
