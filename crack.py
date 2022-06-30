@@ -1,4 +1,22 @@
-
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 14 16:16:26 2020
+@author: Hao Cheam
+Crack detection
+Non data based method. Uses traditional CV.
+Method:
+1. grayscale
+2. bilateral and gaussian filtering to denoise. median filtering to get rid of "salt-and-pepper"
+    in the asphalt
+3. image log (+normalize) to emphasize dark cracks 
+4. canny edge detection
+5. close filter to connect blobs
+6. pick biggest blobs to clean up the result
+Notes:
+Biggest hurdle is finding a way to ignore all the background noise that is present in the
+asphalt or cement. Could probably fine-tune the filter params to achieve better results.
+Need better ways to handle shadows, lane paintings, etc.
+"""
 
 import cv2
 import numpy as np
@@ -21,10 +39,8 @@ img_log = c * (np.log(med + 1))
 img_log = np.array(img_log,dtype=np.uint8)
 img_log = cv2.normalize(img_log, None, 0, 255, cv2.NORM_MINMAX, dtype = cv2.CV_8U)
 
-
 # canny edge detection
 edges = cv2.Canny(img_log,100,250)
-
 
 # close filter
 kernel = np.ones((9,9), np.uint8)
@@ -42,22 +58,3 @@ cv2.imshow('Cracks', img_gray)
 
 
 
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 14 16:16:26 2020
-@author: Hao Cheam
-Crack detection
-Non data based method. Uses traditional CV.
-Method:
-1. grayscale
-2. bilateral and gaussian filtering to denoise. median filtering to get rid of "salt-and-pepper"
-    in the asphalt
-3. image log (+normalize) to emphasize dark cracks 
-4. canny edge detection
-5. close filter to connect blobs
-6. pick biggest blobs to clean up the result
-Notes:
-Biggest hurdle is finding a way to ignore all the background noise that is present in the
-asphalt or cement. Could probably fine-tune the filter params to achieve better results.
-Need better ways to handle shadows, lane paintings, etc.
-"""

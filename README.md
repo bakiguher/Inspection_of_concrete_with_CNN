@@ -16,14 +16,13 @@ It is fundamental for the company to detect even smaller cracks to correct the p
 
 
 
-
-
 ### About the Project 
 
-Millions of dollars are being invested on new constructions but if the maintainance is not done properly it could cost more millions. This cost can be minimized if the detection of cracks will be found as earlier as possible. Readily available crack images data is split in to train validation and test sets with the help of libary splitfolders. In total there are 40000 images. 
+Millions of dollars are being invested on new constructions but if the maintainance is not done properly it could cost more millions. This cost can be minimized if the detection of cracks will be found as earlier as possible. 
+
+To be able to achieve this crack images from [kaggle](https://www.kaggle.com/datasets/arunrk7/surface-crack-detection) are split in to train, validation and test sets with the help of library splitfolders. In total there are 40000 images. 
 
 Metrics used during training the model are: 
-
 
     BinaryAccuracy  
     Precision  
@@ -38,7 +37,7 @@ Callbacks:
         Learning rate patience=3
         tensorboard
 
-After 35 epocs accuarcy stabilised. 
+After 35 epocs accuarcy stabilised. Results were impressive. The reason is data used here is very clean.  
 
 ![Epoch-Accuracy](visuals/ep-acc.png)
 
@@ -55,6 +54,7 @@ docker-compose up
 ## App on heroku
 https://cementcr.herokuapp.com/
 
+
 ## Repo Architecture
 ```
 │ README.md           : This file
@@ -65,7 +65,7 @@ https://cementcr.herokuapp.com/
 | requirements.txt    : Requirements file
 | cement.ipynb        : Model creation in more detailed 
 | modelc.py           : Model creation script 
-| crack.py            : Location of the crak with opencv [author: Hao Cheam](https://github.com/chc442/Crack-Detection) 
+| crack.py            : Location of the crak with opencv  
 |___
 │ data_concreate      : data folder for images
 │ │ : DOWNLOADED FROM KAGGLE
@@ -88,8 +88,7 @@ https://cementcr.herokuapp.com/
 ```
 
 
-
-
+crack location script wriiten by [Hao Cheam](https://github.com/chc442/Crack-Detection)
 
 
 _The imperial vastness of late Roman architecture was made possible by the invention of concrete._
