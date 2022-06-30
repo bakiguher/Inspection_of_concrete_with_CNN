@@ -16,64 +16,76 @@ It is fundamental for the company to detect even smaller cracks to correct the p
 
 
 
-<!-- TABLE OF CONTENTS -->
-
-<details  open="open">
-
-<summary>Table of Contents</summary>
-
-<ol>
-
-<li><a  href="#about-the-project">About The Project</a></li>
-
-<li><a  href="#getting-started">Getting Started</a></li>
-
-<li><a  href="#preprocess">Preprocess</a></li>
-
-<li><a  href="#model">Model</a></li>
-
-</ol>
-
-</details>
 
 
-### Must-have features
+### About the Project 
 
-- Detection of cracks on images of concrete.
-- Identification of crack severity. This can be quantified by measuring the length of crack.
+Millions of dollars are being invested on new constructions but if the maintainance is not done properly it could cost more millions. This cost can be minimized if the detection of cracks will be found as earlier as possible. Readily available crack images data is split in to train validation and test sets with the help of libary splitfolders. In total there are 40000 images. 
 
-### Miscellaneous information
-
-The project will require your creativity to combine the different skills that you have acquired to deliver a solution.
-
-Different approaches can be taken depending on what you are aiming to achieve.
-
-- Is there a possibility of using the tool to identify another type of damage on concrete?
-- Could the tool be used to identify a crack in another type of material e.g. pavement?
-
-### Data
-
-Different datasets are available from research institutions worldwide, you should select the necessary information according to your project objectives.
-
-- [Institute of Electrical and Electronics Engineers](https://ieee-dataport.org/documents/elci-edge-based-labeled-crack-image#files)
-- [Utah University SDNET2018](https://digitalcommons.usu.edu/all_datasets/48/)
-- [Pang-jo Chun](https://sites.google.com/view/pchun/)
-
-## Technical Evaluation criteria
-
-- Use of deep learning and computer vision algorithms and libraries.
-- A baseline model was established.
-- The algorithm can detect a crack in concrete.
-- The algorithm can estimate the length of the crack.
-- Preprocessing of the images was done to improve detection.
-- Appropiate metrics were used to evaluate the model.
+Metrics used during training the model are: 
 
 
-## A final note of encouragement
+    BinaryAccuracy  
+    Precision  
+    Recall  
+
+Model has 3 Conv2d layers with maxpooling after each convolutional layers. It ends with a flat layer and 1 noron Dense layer. For early stopping val_loss is checked for 8 patience. Again learning rate reduced after 3 patience steps for val_loss. Images used in detectien were quite clean so the accuracy on testset vas %99.
+
+
+Callbacks:  
+
+        Early stopping patience=8 
+        Learning rate patience=3
+        tensorboard
+
+After 35 epocs accuarcy stabilised. 
+![Epoch-Accuracy](visuals/ep-acc.png)
+![Epoch-recall](visuals/ep-rec.png)
+
+## installation
+```
+docker-compose build
+docker-compose up
+```
+
+## App on heroku
+https://cementcr.herokuapp.com/
+
+## Repo Architecture
+```
+│ README.md           : This file
+│ app.py              : Flask app start
+│ util.py             : some utility functions
+│ Dockerfile          : Docker file
+│ docker-compose.yml  : Docker file
+| requirements.txt    : Requirements file
+| cement.ipynb        : Model creation for cement cracks
+|___
+│ data_concreate      : data folder for images
+│ │ : DOWNLOADED FROM KAGGLE
+│___
+| model
+│ │ modelbm.h5        : Weights of the model
+│ │ modelbm.json      : Model structure
+│___
+| templates
+│ | base.html         : Template for flask
+│ | index.html        : Template for flask
+│___
+| static
+│ | main.css          : css file for flask app
+│ | main.js           : javascript file used in app 
+│___
+| visuals
+| | : images used in readme file
+  
+```
+
+
+
+
+
 
 _The imperial vastness of late Roman architecture was made possible by the invention of concrete._
 -Iain McGilchrist
 
-How far could we go now with the application of AI ?
-
-![Robot Building (GIF)](https://media.giphy.com/media/f9RGISl9RmNOsWR5NP/giphy.gif)
