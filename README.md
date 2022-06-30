@@ -39,14 +39,18 @@ Callbacks:
         tensorboard
 
 After 35 epocs accuarcy stabilised. 
+
 ![Epoch-Accuracy](visuals/ep-acc.png)
+
 ![Epoch-recall](visuals/ep-rec.png)
+
 
 ## installation
 ```
 docker-compose build
 docker-compose up
 ```
+
 
 ## App on heroku
 https://cementcr.herokuapp.com/
@@ -59,7 +63,9 @@ https://cementcr.herokuapp.com/
 │ Dockerfile          : Docker file
 │ docker-compose.yml  : Docker file
 | requirements.txt    : Requirements file
-| cement.ipynb        : Model creation for cement cracks
+| cement.ipynb        : Model creation in more detailed 
+| modelc.py           : Model creation script 
+| crack.py            : Location of the crak with opencv [author: Hao Cheam](https://github.com/chc442/Crack-Detection) 
 |___
 │ data_concreate      : data folder for images
 │ │ : DOWNLOADED FROM KAGGLE
